@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # ---------------------------------------------
 # ---				Asura					---
 # ---------------------------------------------
@@ -5,13 +7,11 @@
 # Archive password cracker using a brute-force dictionary attack, written by xKyzara (github.com/xKyzara) for Python 3
 # Should work for either zip-files or 7z-files ...
 #
-# Example on my machine: python3 Asura.py -f targets/secret.zip -p password-lists/Passwords/10-million-password-list-top-1000000.txt
+# Example: ./Asura.py -f secret.zip -p password-list.txt
 
 import sys
 import getopt
 import zipfile
-import threading
-import _thread
 
 def usage():
 	print("Usage: python3 Asura.py -f /path/to/the/zipfile -p /path/to/the/dictionary")
@@ -21,8 +21,8 @@ def usage():
 	print("-f --file			- specify the zipfile to bruteforce")
 	print("-d --dictionary			- specify the dictionary wordlist to use while bruteforcing")
 	print("")
-	print("Examples:")
-	print("python3 Asura.py -f targets/secret.zip -p password-lists/Passwords/xato-net-10-million-passwords-1000000.txt")
+	print("Example:")
+	print("./Asura.py -f secret.zip -p password-list.txt")
 	print("")
 
 def file_len(fname):
@@ -60,6 +60,7 @@ def main(argv):
 
 	if not len(sys.argv[1:]):
 		usage()
+		sys.exit()
 
 	file = None
 	pwlist = None
